@@ -1,0 +1,37 @@
+<div class="main" *ngFor="let people of people$">
+  <mat-card class="professionals-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+        <img
+          mat-card-image
+          src="{{ people.professionalImage }}"
+          alt="Photo of Professional"
+        />
+      </div>
+      <mat-card-title>{{ people.name }}</mat-card-title>
+      <mat-card-subtitle
+        >{{ people.specialty }} | {{ people.address }}</mat-card-subtitle
+      >
+      <mat-card-subtitle class="rating">
+        <mat-icon aria-hidden="false" class="star" fontIcon="star"></mat-icon>
+        <mat-icon aria-hidden="false" class="star" fontIcon="star"></mat-icon>
+        <mat-icon aria-hidden="false" class="star" fontIcon="star"></mat-icon>
+        <mat-icon aria-hidden="false" class="star" fontIcon="star"></mat-icon>
+        <mat-icon aria-hidden="false" class="star" fontIcon="star"></mat-icon>
+        ({{ people.reviews }} reviews)</mat-card-subtitle
+      >
+      <mat-card-subtitle
+      class="values"
+        >{{ people.price | currency : "BRL" }} /
+        {{ people.sessionTime }} Minutes</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ people.description }}</p>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="schedule-card">
+    <mat-calendar [(selected)]="selected"></mat-calendar>
+  </mat-card>
+</div>
