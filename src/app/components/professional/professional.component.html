@@ -1,36 +1,42 @@
-<div class="main" *ngFor="let people of people$">
-  <mat-card class="professionals-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image">
-        <img
-          mat-card-image
-          src="{{ people.professionalImage }}"
-          alt="Photo of Professional"
-        />
-      </div>
-      <mat-card-title>{{ people.name }}</mat-card-title>
-      <mat-card-subtitle
-        >{{ people.specialty }} | {{ people.address }}</mat-card-subtitle
-      >
-      <mat-card-subtitle class="rating">
-        <mat-icon aria-hidden="false" class="star" fontIcon="star"></mat-icon>
-        <mat-icon aria-hidden="false" class="star" fontIcon="star"></mat-icon>
-        <mat-icon aria-hidden="false" class="star" fontIcon="star"></mat-icon>
-        <mat-icon aria-hidden="false" class="star" fontIcon="star"></mat-icon>
-        <mat-icon aria-hidden="false" class="star" fontIcon="star"></mat-icon>
-        ({{ people.reviews }} reviews)</mat-card-subtitle
-      >
-      <mat-card-subtitle
-      class="values"
-        >{{ people.price | currency : "BRL" }} /
-        {{ people.sessionTime }} Minutes</mat-card-subtitle
-      >
-    </mat-card-header>
-    <mat-card-content>
-      <p>{{ people.description }}</p>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="schedule-card">
-    <mat-calendar [(selected)]="selected"></mat-calendar>
-  </mat-card>
+<div class="main">
+  <div class="professionals-container">
+    <mat-card class="professionals-card" *ngFor="let people of people$">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image">
+          <img
+            mat-card-image
+            src="{{ people.professionalImage }}"
+            alt="Photo of Professional"
+          />
+        </div>
+        <mat-card-title>{{ people.name }}</mat-card-title>
+        <mat-card-subtitle
+          >{{ people.specialty }} | {{ people.address }}</mat-card-subtitle
+        >
+        <mat-card-subtitle class="rating">
+          <span class="star">
+            <span ng-style="{ width: getStars(people.rating) }"></span>
+          </span>
+
+          ({{ people.reviews }} reviews)</mat-card-subtitle
+        >
+        <mat-card-subtitle class="values"
+          >{{ people.price | currency : "BRL" }} /
+          {{ people.sessionTime }} Minutes</mat-card-subtitle
+        >
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ people.description }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="schedule-container">
+    <mat-card *ngFor="let dateSchedule of dateSchedule$">
+      <mat-card-header
+        ><p>Schedule your session!</p>
+        <p>{{ dateSchedule.avaliableDates[0] | date: 'dd/MM/yyyy hh:mm a'}}</p>
+      </mat-card-header>
+      <mat-card-content> </mat-card-content>
+    </mat-card>
+  </div>
 </div>

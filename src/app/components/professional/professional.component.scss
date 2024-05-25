@@ -1,9 +1,7 @@
 .main {
   padding: 2rem;
-  display: grid;
-  justify-content: space-around;
-  grid-template-rows: repeat(2, 0fr);
-  grid-template-columns: repeat(2, 650px);
+  display: flex;
+  justify-content: space-evenly;
 
   .professionals-card,
   .professional-schedule {
@@ -11,6 +9,9 @@
     max-height: 285px;
   }
 
+  .professionals-card {
+    margin: 20px;
+  }
   .example-header-image img {
     background-size: cover;
     height: 45px;
@@ -25,7 +26,13 @@
     display: flex;
     align-items: center;
     .star {
-      color: #ffc107;
+      background: url("/assets/images/star.svg") 4px -4px repeat-x;
+      width: 80px;
+      height: 16px;
+    }
+
+    span.star span {
+      background-position: 0 0;
     }
   }
 
@@ -33,5 +40,20 @@
     color: #000;
     font-weight: 500;
     margin: 0 0 30px 0;
+  }
+
+  .schedule-container {
+    width: 20rem;
+
+
+     .mat-mdc-card-header {
+      display: flex;
+      background-color: #7766c6;
+      color: #fff;
+      padding: 10px;
+      font-weight: 300;
+      flex-direction: column;
+      text-align: center;
+    }
   }
 }

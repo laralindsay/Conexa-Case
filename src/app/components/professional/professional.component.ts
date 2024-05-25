@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { GetProfessionalService } from 'src/app/services/get-professional.service';
@@ -29,31 +29,20 @@ import { People } from 'src/app/types/people.interface';
   ],
 })
 export class ProfessionalComponent implements OnInit {
-  @Input() rating: number | any;
-
   constructor(private professionalservice: GetProfessionalService) {}
-
-  longText = `The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
-  from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
-  originally bred for hunting.`;
-
   selected: Date | null | undefined;
 
   people$: any;
+  dateSchedule$: any;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getPeople();
   }
 
   getPeople() {
     this.professionalservice.getProfessional().subscribe((data: People[]) => {
       this.people$ = data;
+      this.dateSchedule$ = data
     });
   }
-
-  get stars() {
-    return Array(Math.floor(this.rating)).fill(0);
-  }
-
-
 }
