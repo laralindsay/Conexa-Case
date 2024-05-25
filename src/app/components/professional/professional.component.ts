@@ -33,7 +33,8 @@ export class ProfessionalComponent implements OnInit {
   selected: Date | null | undefined;
 
   people$: any;
-  dateSchedule$: any;
+  dateSchedule$: any = [];
+  dates:any = [];
 
   ngOnInit(): void {
     this.getPeople();
@@ -42,7 +43,9 @@ export class ProfessionalComponent implements OnInit {
   getPeople() {
     this.professionalservice.getProfessional().subscribe((data: People[]) => {
       this.people$ = data;
-      this.dateSchedule$ = data
+      this.dateSchedule$ = data.forEach(res => {
+        this.dates = res.avaliableDates;
+      });
     });
   }
 }
